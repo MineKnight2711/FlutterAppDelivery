@@ -9,11 +9,19 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  another_flushbar: ^1.12.30
   get: ^4.6.5
   lottie: ^2.7.0
   flutter_screenutil: ^5.9.0
   slide_to_act: ^2.0.2
+  geolocator: ^8.0.1
   google_fonts: ^4.0.3
+  mapbox_polyline_points: ^0.0.5
+  mapbox_maps_flutter: ^0.4.3
+  flutter_polyline_points: ^1.0.0
+  custom_map_markers: ^0.0.2+1
+  polyline_do: ^0.1.0
+  dio: ^5.1.2
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -23,5 +31,5 @@ flutter:
   uses-material-design: true
   assets:
     - assets/
-    - assets/image/
+    # - assets/image/
     - assets/animations/

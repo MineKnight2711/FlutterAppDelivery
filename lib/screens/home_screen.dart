@@ -1,9 +1,10 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart';
-import 'package:slide_to_act/slide_to_act.dart';
 import 'package:trasua_delivery/config/colors.dart';
 import 'package:trasua_delivery/config/font.dart';
 import 'package:trasua_delivery/controller/map_controller.dart';
@@ -258,11 +259,14 @@ class HomeScreenAppBar extends StatelessWidget {
       height: 50.h,
       child: Row(
         children: [
-          CircleAvatar(
-            radius: 20.r,
-            backgroundImage: Image.network(
-                    "https://cdn.iconscout.com/icon/free/png-256/free-avatar-370-456322.png?f=webp")
-                .image,
+          GestureDetector(
+            onTap: () {},
+            child: CircleAvatar(
+              radius: 20.r,
+              backgroundImage: Image.network(
+                      "https://cdn.iconscout.com/icon/free/png-256/free-avatar-370-456322.png?f=webp")
+                  .image,
+            ),
           ),
           SizedBox(
             width: 10.w,

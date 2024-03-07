@@ -10,6 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
   another_flushbar: ^1.12.30
+  cupertino_icons: ^1.0.6
   get: ^4.6.5
   lottie: ^2.7.0
   flutter_screenutil: ^5.9.0

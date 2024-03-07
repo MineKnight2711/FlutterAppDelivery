@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:trasua_delivery/controller/main_controller.dart';
 import 'package:trasua_delivery/screens/slpash_screen.dart';
 
-void main() {
+void main() async {
+  await MainController.initializeControllers();
   runApp(
     const ScreenUtilInit(
       designSize: Size(375, 812),

@@ -35,6 +35,8 @@ class MapController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+    MapboxOptions.setAccessToken(
+        "pk.eyJ1IjoidGluaGthaXQiLCJhIjoiY2xoZXhkZmJ4MTB3MzNqczdza2MzcHE2YSJ9.tPQwbEWtA53iWlv3U8O0-g");
     _mapApi = MapApi();
   }
 

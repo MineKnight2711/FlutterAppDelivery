@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart';
+
 import 'package:trasua_delivery/config/colors.dart';
 import 'package:trasua_delivery/controller/map_controller.dart';
 import 'package:trasua_delivery/widgets/custom_snackbar.dart';
@@ -21,9 +22,10 @@ class HomeScreenMapWidget extends StatelessWidget {
         SizedBox(
           child: MapWidget(
             key: const ValueKey("mapWidget"),
-            resourceOptions: ResourceOptions(
-                accessToken:
-                    "pk.eyJ1IjoidGluaGthaXQiLCJhIjoiY2xoZXhkZmJ4MTB3MzNqczdza2MzcHE2YSJ9.tPQwbEWtA53iWlv3U8O0-g"),
+
+            // resourceOptions: ResourceOptions(
+            //     accessToken:
+            //         "pk.eyJ1IjoidGluaGthaXQiLCJhIjoiY2xoZXhkZmJ4MTB3MzNqczdza2MzcHE2YSJ9.tPQwbEWtA53iWlv3U8O0-g"),
             cameraOptions: CameraOptions(
               center: Point(coordinates: Position(106.702765, 11)).toJson(),
               zoom: 10,

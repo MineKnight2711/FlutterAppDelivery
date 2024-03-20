@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:trasua_delivery/controller/main_controller.dart';
-import 'package:trasua_delivery/screens/slpash_screen.dart';
+import 'package:trasua_delivery/screens/login/login_screen.dart';
+import 'package:trasua_delivery/screens/splash_screen.dart';
 
 void main() async {
   await MainController.initializeControllers();
@@ -24,10 +25,11 @@ class AppDelivery extends StatelessWidget {
     return GetMaterialApp(
       supportedLocales: const [Locale("en", "US"), Locale("vi", "VN")],
       locale: const Locale("en", "US"),
-      initialRoute: 'splash_screen',
+      initialRoute: 'login_screen',
       debugShowCheckedModeBanner: false,
       routes: {
-        'splash_screen': (context) => const SplashScreen(),
+        'login_screen': (context) => LoginScreen(),
+        // 'splash_screen': (context) =>const SplashScreen(),
       },
     );
   }

@@ -14,4 +14,16 @@ class CustomFonts {
       color: color ?? AppColors.dark100,
     );
   }
+
+  static TextStyle customGoogleNunitoFonts({
+    double? fontSize,
+    FontWeight? fontWeight,
+    Color? color,
+  }) {
+    return GoogleFonts.nunito(
+      fontSize: fontSize ?? 12,
+      fontWeight: fontWeight ?? FontWeight.normal,
+      color: color ?? const Color.fromARGB(255, 12, 16, 29),
+    );
+  }
 }

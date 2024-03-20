@@ -4,9 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart';
-
-import 'package:trasua_delivery/config/colors.dart';
 import 'package:trasua_delivery/controller/map_controller.dart';
+import 'package:trasua_delivery/screens/home/components/map_navigate_button.dart';
 import 'package:trasua_delivery/widgets/custom_snackbar.dart';
 import 'package:trasua_delivery/transitions/transition_animation.dart';
 import 'package:geolocator/geolocator.dart' as geolocator;
@@ -22,10 +21,6 @@ class HomeScreenMapWidget extends StatelessWidget {
         SizedBox(
           child: MapWidget(
             key: const ValueKey("mapWidget"),
-
-            // resourceOptions: ResourceOptions(
-            //     accessToken:
-            //         "pk.eyJ1IjoidGluaGthaXQiLCJhIjoiY2xoZXhkZmJ4MTB3MzNqczdza2MzcHE2YSJ9.tPQwbEWtA53iWlv3U8O0-g"),
             cameraOptions: CameraOptions(
               center: Point(coordinates: Position(106.702765, 11)).toJson(),
               zoom: 10,
@@ -94,36 +89,6 @@ class HomeScreenMapWidget extends StatelessWidget {
           ),
         ),
       ],
-    );
-  }
-}
-
-class MapNavigateButton extends StatelessWidget {
-  final Function()? onPressed;
-  final IconData iconData;
-  const MapNavigateButton({
-    super.key,
-    this.onPressed,
-    required this.iconData,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
-      child: ElevatedButton(
-        onPressed: onPressed,
-        style: ElevatedButton.styleFrom(
-          shape: const CircleBorder(),
-          backgroundColor: AppColors.orange100, // Make the button circular
-          padding: const EdgeInsets.all(18),
-        ),
-        child: Icon(
-          iconData,
-          size: 22,
-          color: AppColors.white100,
-        ),
-      ),
     );
   }
 }

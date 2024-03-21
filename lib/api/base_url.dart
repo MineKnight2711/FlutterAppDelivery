@@ -12,4 +12,5 @@ class ApiUrl {
   static const apiGoongMapBaseUrl = "https://rsapi.goong.io/";
   ///// Api của Đạt-------------------------------------------------
   static const apiSaveLocation = "${baseUrl}deliver/update-location";
+  static const apiDeliver = "${baseUrl}deliver";
 }

@@ -4,10 +4,13 @@ import 'package:get/get.dart';
 import 'package:trasua_delivery/config/colors.dart';
 import 'package:trasua_delivery/config/font.dart';
 import 'package:trasua_delivery/config/spacing.dart';
+import 'package:trasua_delivery/controller/deliver_controller.dart';
+import 'package:trasua_delivery/controller/encrypt_controller.dart';
+import 'package:trasua_delivery/screens/home/home_screen.dart';
 
 class LoginScreen extends GetView {
-  final _phoneController = TextEditingController();
-
+  final _txtPhoneNumber = TextEditingController();
+  final _rsa = Get.find<DeliverController>();
   LoginScreen({super.key});
 
   @override
@@ -45,7 +48,7 @@ class LoginScreen extends GetView {
                       ),
                       SizedBox(height: AppSpacing.space16),
                       TextField(
-                        controller: _phoneController,
+                        controller: _txtPhoneNumber,
                         decoration: InputDecoration(
                           labelText: 'Số điện thoại',
                           prefixIcon:
@@ -58,8 +61,8 @@ class LoginScreen extends GetView {
                       ),
                       SizedBox(height: AppSpacing.space16),
                       ElevatedButton(
-                        onPressed: () {
-                          // Xử lý đăng nhập
+                        onPressed: () async {
+                          await _rsa.login(_txtPhoneNumber.text);
                         },
                         style: ElevatedButton.styleFrom(
                           foregroundColor: Colors.white,

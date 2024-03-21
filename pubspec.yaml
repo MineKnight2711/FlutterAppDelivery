@@ -11,8 +11,10 @@ dependencies:
     sdk: flutter
   another_flushbar: ^1.12.30
   cupertino_icons: ^1.0.6
+  encrypt: ^5.0.3
   get: ^4.6.5
   lottie: ^3.1.0
+  logger: ^1.4.0
   flutter_screenutil: ^5.9.0
   slide_to_act: ^2.0.2
   geolocator: ^11.0.0
@@ -22,6 +24,7 @@ dependencies:
   flutter_polyline_points: ^2.0.0
   custom_map_markers: ^0.0.2+1
   polyline_do: ^0.1.0
+  pointycastle: ^3.7.4
   dio: ^5.1.2
 dev_dependencies:
   flutter_test:
@@ -32,5 +35,5 @@ flutter:
   uses-material-design: true
   assets:
     - assets/
-    # - assets/image/
+    - assets/keys/
     - assets/animations/

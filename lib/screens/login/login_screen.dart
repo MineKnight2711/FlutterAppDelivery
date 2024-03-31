@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -7,10 +9,11 @@ import 'package:trasua_delivery/config/spacing.dart';
 import 'package:trasua_delivery/controller/deliver_controller.dart';
 import 'package:trasua_delivery/controller/encrypt_controller.dart';
 import 'package:trasua_delivery/screens/home/home_screen.dart';
+import 'package:trasua_delivery/widgets/custom_snackbar.dart';
 
 class LoginScreen extends GetView {
   final _txtPhoneNumber = TextEditingController();
-  final _rsa = Get.find<DeliverController>();
+  final _deliverController = Get.find<DeliverController>();
   LoginScreen({super.key});
 
   @override
@@ -62,7 +65,20 @@ class LoginScreen extends GetView {
                       SizedBox(height: AppSpacing.space16),
                       ElevatedButton(
                         onPressed: () async {
-                          await _rsa.login(_txtPhoneNumber.text);
+                          final result = await _deliverController
+                              .login(_txtPhoneNumber.text);
+                          if (result == "Success") {
+                            CustomSnackBar.showCustomSnackBar(
+                                context, "Đăng nhập thành công",
+                                isShowOnTop: false, type: FlushbarType.success);
+
+                            Get.offAll(HomeScreen(),
+                                transition: Transition.rightToLeftWithFade);
+                          } else {
+                            CustomSnackBar.showCustomSnackBar(
+                                context, "Đăng nhập thất bại",
+                                isShowOnTop: false, type: FlushbarType.failure);
+                          }
                         },
                         style: ElevatedButton.styleFrom(
                           foregroundColor: Colors.white,

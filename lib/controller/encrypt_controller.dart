@@ -35,47 +35,16 @@ class RSAEncryptDecrypt extends GetxController {
     return utf8.decode(messageBytes);
   }
 
-  // void encryptMessage(String messagee) async {
-  //   final pubKey = await rootBundle.load("assets/keys/public.pem");
-  //   final priKey = await rootBundle.load("assets/keys/private.pem");
-  //   //Lấy đường dẫn chính xác của 2 file public và private key
-  //   String dir = (await getApplicationDocumentsDirectory()).path;
-
-  //   writeToFile(pubKey, '$dir/publickey.pem');
-  //   writeToFile(priKey, '$dir/privatekey.pem');
-  //   //Đọc public key và private key từ 2 file trên
-  //   final publicKey =
-  //       await parseKeyFromFile<RSAPublicKey>(File('$dir/publickey.pem').path);
-  //   final privateKey =
-  //       await parseKeyFromFile<RSAPrivateKey>(File('$dir/privatekey.pem').path);
-  //   //Tạo đối tượng encrypter với public key và private key
-  //   final encrypter =
-  //       Encrypter(RSA(publicKey: publicKey, privateKey: privateKey));
-  //   final encrypted = encrypter.encrypt(messagee);
-  //   final decrypted = encrypter.decrypt(encrypted);
-  //   // final publicKeyBase64 = base64Encode(publicKeyBytes);
-  //   print('Public Key (PEM): ${encrypter}');
-  //   print(encrypted.base64);
-  // }
-
   RSAPublicKey parsePublicKeyFromBase64(String base64EncodedPublicKey) {
     Logger().i(base64EncodedPublicKey);
     var publicKey =
         "-----BEGIN PUBLIC KEY-----\n$base64EncodedPublicKey\n-----END PUBLIC KEY-----";
     try {
-      // Decode the Base64 string to bytes
-      // List<int> publicKeyBytes = base64.decode(base64EncodedPublicKey);
-
-      // // Convert bytes to string
-      // String publicKeyStringDecoded = utf8.decode(publicKeyBytes);
-      // Parse the RSA public key
       final rsaParser = RSAKeyParser();
       RSAPublicKey rsaPublicKey = rsaParser.parse(publicKey) as RSAPublicKey;
 
-      print("Successfully parsed RSA public key: $rsaPublicKey");
       return rsaPublicKey;
     } catch (e) {
-      print("Error parsing RSA public key: $e");
       throw e;
     }
   }
@@ -93,7 +62,6 @@ class RSAEncryptDecrypt extends GetxController {
       final encrypter =
           Encrypter(RSA(publicKey: serverPublicKey, privateKey: privateKey));
       final encryptedMessage = encrypter.encrypt(message);
-      Logger().i("Cipher text ${encryptedMessage.base64}");
       return encryptedMessage.base64;
     }
     return "Fail";

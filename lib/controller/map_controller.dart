@@ -168,6 +168,35 @@ class MapController extends GetxController {
     return responseBaseModel.message ?? "";
   }
 
+  void moveToCurrentPosition(double lat, double longLat) {
+    resetPointAndPolyline();
+
+    // Set the camera center to the new location
+    mapboxMap.value?.setCamera(
+      CameraOptions(
+        center: Point(
+          coordinates: Position(longLat, lat),
+        ).toJson(),
+      ),
+    );
+
+    mapboxMap.value?.annotations
+        .createPointAnnotationManager()
+        .then((pointAnnotationManager) async {
+      pointManager.value = pointAnnotationManager;
+      final ByteData bytes =
+          await rootBundle.load('assets/images/delivery.png');
+      final Uint8List imagesData = bytes.buffer.asUint8List();
+      pointAnnotationManager.create(
+        PointAnnotationOptions(
+          iconSize: 1.5,
+          image: imagesData,
+          geometry: Point(coordinates: Position(longLat, lat)).toJson(),
+        ),
+      );
+    });
+  }
+
   void centerCameraOnCoordinate(double lat, double longLat) {
     resetPointAndPolyline();
     mapboxMap.value?.setCamera(CameraOptions(
@@ -188,15 +217,15 @@ class MapController extends GetxController {
         .then((pointAnnotationManager) async {
       pointManager.value = pointAnnotationManager;
       final ByteData bytes =
-          await rootBundle.load('assets/image/location_64.png');
-      final Uint8List imageData = bytes.buffer.asUint8List();
+          await rootBundle.load('assets/images/location_64.png');
+      final Uint8List imagesData = bytes.buffer.asUint8List();
 
       pointAnnotationManager.create(PointAnnotationOptions(
           iconSize: 1.5,
-          image: imageData,
+          image: imagesData,
           geometry: Point(coordinates: Position(longLat, lat)).toJson()));
     });
-    // PointAnnotation(iconImage: )
+    // PointAnnotation(iconimages: )
     // CircleAnnotationOptions(
     //   geometry: Point(coordinates: Position(longLat, lat)).toJson(),
     //   circleColor: AppColors.orange100.value,
@@ -255,11 +284,11 @@ class MapController extends GetxController {
       postions.add(Position(endLat, endLng));
       final postionOptions = <PointAnnotationOptions>[];
       final ByteData bytes =
-          await rootBundle.load('assets/image/location_64.png');
-      final Uint8List imageData = bytes.buffer.asUint8List();
+          await rootBundle.load('assets/images/location_64.png');
+      final Uint8List imagesData = bytes.buffer.asUint8List();
       for (Position p in postions) {
         postionOptions.add(PointAnnotationOptions(
-            geometry: Point(coordinates: p).toJson(), image: imageData));
+            geometry: Point(coordinates: p).toJson(), image: imagesData));
       }
       pointAnnotationManager.createMulti(postionOptions);
     });
@@ -294,12 +323,12 @@ class MapController extends GetxController {
         .then((pointAnnotationManager) async {
       pointManager.value = pointAnnotationManager;
       final ByteData bytes =
-          await rootBundle.load('assets/image/location_64.png');
-      final Uint8List imageData = bytes.buffer.asUint8List();
+          await rootBundle.load('assets/images/location_64.png');
+      final Uint8List imagesData = bytes.buffer.asUint8List();
 
       pointAnnotationManager.create(PointAnnotationOptions(
           iconSize: 1.5,
-          image: imageData,
+          image: imagesData,
           geometry: Point(coordinates: Position(lng, lat)).toJson()));
     });
   }

@@ -9,7 +9,7 @@ class DeliverApi {
       int deliverId, double latitude, double longitude) async {
     final url = Uri.parse(
         "${ApiUrl.apiSaveLocation}/$deliverId?latitude=$latitude&longitude=$longitude");
-    final response = await http.post(url);
+    final response = await http.put(url);
     ResponseBaseModel responseBase = ResponseBaseModel();
     print(response.statusCode);
     if (response.statusCode == 200) {
@@ -42,10 +42,9 @@ class DeliverApi {
         Uri.parse("${ApiUrl.apiDeliver}/login?phoneNumber=$encodedCipherText");
     final response = await http.post(url);
     ResponseBaseModel responseBase = ResponseBaseModel();
-    print(response.statusCode);
     if (response.statusCode == 200) {
-      responseBase.data = jsonDecode(utf8.decode(response.bodyBytes));
-      responseBase.message = "Success";
+      final responseJson = jsonDecode(utf8.decode(response.bodyBytes));
+      responseBase = ResponseBaseModel.fromJson(responseJson);
       return responseBase;
     }
     responseBase.message = 'Error';

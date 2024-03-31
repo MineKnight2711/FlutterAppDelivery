@@ -17,6 +17,7 @@ dependencies:
   logger: ^1.4.0
   flutter_screenutil: ^5.9.0
   slide_to_act: ^2.0.2
+  shared_preferences: ^2.2.2
   geolocator: ^11.0.0
   google_fonts: ^6.2.1
   mapbox_polyline_points: ^0.0.5
@@ -35,5 +36,6 @@ flutter:
   uses-material-design: true
   assets:
     - assets/
+    - assets/images/
     - assets/keys/
     - assets/animations/

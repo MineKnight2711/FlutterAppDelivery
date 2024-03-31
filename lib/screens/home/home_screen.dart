@@ -23,27 +23,34 @@ class _HomeScreenState extends State<HomeScreen> {
   final _deliverController = Get.find<DeliverController>();
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      key: _scaffoldKey,
-      appBar: HomeScreenAppBar(
-        onAvatarTap: () => _scaffoldKey.currentState?.openDrawer(),
+    return Obx(
+      () => Scaffold(
+        key: _scaffoldKey,
+        appBar: HomeScreenAppBar(
+          onAvatarTap: () => _scaffoldKey.currentState?.openDrawer(),
+        ),
+        drawer: _deliverController.deliverModel.value != null
+            ? HomeScreenDrawer(
+                logoutPressed: () => _deliverController.logOut().whenComplete(
+                    () => _scaffoldKey.currentState?.closeDrawer()),
+              )
+            : null,
+        body: HomeScreenMapWidget(),
+        bottomNavigationBar: Container(
+            height: 60.h,
+            padding: EdgeInsets.all(5.w),
+            alignment: Alignment.center,
+            child: SlideAction(
+              sliderButtonIconSize: 10.r,
+              onSubmit: () async {
+                final result = await _deliverController.saveCurrentLocation();
+                print(result);
+              },
+              text: "Bắt đầu làm việc",
+              outerColor: AppColors.orange100,
+              borderRadius: 5,
+            )),
       ),
-      drawer: const HomeScreenDrawer(),
-      body: HomeScreenMapWidget(),
-      bottomNavigationBar: Container(
-          height: 60.h,
-          padding: EdgeInsets.all(5.w),
-          alignment: Alignment.center,
-          child: SlideAction(
-            sliderButtonIconSize: 10.r,
-            onSubmit: () async {
-              final result = await _deliverController.saveCurrentLocation();
-              print(result);
-            },
-            text: "Bắt đầu làm việc",
-            outerColor: AppColors.orange100,
-            borderRadius: 5,
-          )),
     );
   }
 }

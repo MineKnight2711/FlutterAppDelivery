@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
+import 'package:trasua_delivery/controller/deliver_controller.dart';
 import 'package:trasua_delivery/screens/home/home_screen.dart';
+import 'package:trasua_delivery/screens/login/login_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -14,6 +16,7 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  final _deliverController = Get.find<DeliverController>();
   @override
   void initState() {
     super.initState();
@@ -36,10 +39,13 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   Future<Timer> simulateInitialDataLoading() async {
+    print(_deliverController.deliverModel.value?.deliverName);
     return Timer(
       const Duration(seconds: 2),
       () => Get.offAll(
-        const HomeScreen(),
+        _deliverController.deliverModel.value != null
+            ? const HomeScreen()
+            : LoginScreen(),
         transition: Transition.fadeIn,
         duration: const Duration(
           milliseconds: 1000,

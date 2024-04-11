@@ -16,7 +16,7 @@ class HomeScreenDrawer extends StatelessWidget {
           padding: EdgeInsets.zero,
           children: [
             Padding(
-              padding: EdgeInsets.all(8.w),
+              padding: EdgeInsets.all(10.w),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [

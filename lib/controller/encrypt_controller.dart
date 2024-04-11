@@ -7,7 +7,7 @@ import 'package:encrypt/encrypt_io.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
-import 'package:path_provider/path_provider.dart';
+import 'package:path_provider/path_provider.dart' as path_provider;
 import 'package:pointycastle/asymmetric/api.dart';
 import 'package:trasua_delivery/api/deliver_api.dart';
 
@@ -55,7 +55,8 @@ class RSAEncryptDecrypt extends GetxController {
       final serverPublicKey =
           parsePublicKeyFromBase64(serverPublicKeyReceived.toString());
       final priKey = await rootBundle.load("assets/keys/private.pem");
-      String dir = (await getApplicationDocumentsDirectory()).path;
+      String dir =
+          (await path_provider.getApplicationDocumentsDirectory()).path;
       writeToFile(priKey, '$dir/privatekey.pem');
       final privateKey = await parseKeyFromFile<RSAPrivateKey>(
           File('$dir/privatekey.pem').path);

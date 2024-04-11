@@ -3,9 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:trasua_delivery/config/colors.dart';
 import 'package:trasua_delivery/config/font.dart';
 import 'package:trasua_delivery/controller/deliver_controller.dart';
 import 'package:trasua_delivery/screens/login/login_screen.dart';
@@ -104,57 +101,57 @@ class HomeScreenAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 }
 
-class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
-  final String? title;
-  final bool showLeading, centeredTitle;
-  final VoidCallback? onPressed;
-  final PreferredSizeWidget? bottom;
-  final List<Widget>? actions;
-  final Color? backGroundColor;
-  final Color? leadingColor;
-  const CustomAppBar(
-      {super.key,
-      this.title,
-      this.showLeading = true,
-      this.onPressed,
-      this.bottom,
-      this.actions,
-      this.backGroundColor,
-      this.leadingColor,
-      this.centeredTitle = true});
+// class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
+//   final String? title;
+//   final bool showLeading, centeredTitle;
+//   final VoidCallback? onPressed;
+//   final PreferredSizeWidget? bottom;
+//   final List<Widget>? actions;
+//   final Color? backGroundColor;
+//   final Color? leadingColor;
+//   const CustomAppBar(
+//       {super.key,
+//       this.title,
+//       this.showLeading = true,
+//       this.onPressed,
+//       this.bottom,
+//       this.actions,
+//       this.backGroundColor,
+//       this.leadingColor,
+//       this.centeredTitle = true});
 
-  @override
-  Widget build(BuildContext context) {
-    return AppBar(
-      backgroundColor: backGroundColor ?? AppColors.orange100,
-      elevation: 0,
-      centerTitle: centeredTitle,
-      leading: showLeading
-          ? Padding(
-              padding: const EdgeInsets.all(10),
-              child: InkWell(
-                onTap: onPressed ??
-                    () {
-                      Navigator.pop(context);
-                    },
-                child: Icon(Icons.arrow_back,
-                    color: leadingColor ?? AppColors.white100),
-              ),
-            )
-          : null,
-      actions: actions,
-      title: Text(
-        title ?? "",
-        style: GoogleFonts.nunito(
-          color: AppColors.white100,
-          fontSize: (1 / 37).r,
-          fontWeight: FontWeight.w500,
-        ),
-      ),
-      bottom: bottom,
-    );
-  }
+//   @override
+//   Widget build(BuildContext context) {
+//     return AppBar(
+//       backgroundColor: backGroundColor ?? AppColors.orange100,
+//       elevation: 0,
+//       centerTitle: centeredTitle,
+//       leading: showLeading
+//           ? Padding(
+//               padding: const EdgeInsets.all(10),
+//               child: InkWell(
+//                 onTap: onPressed ??
+//                     () {
+//                       Navigator.pop(context);
+//                     },
+//                 child: Icon(Icons.arrow_back,
+//                     color: leadingColor ?? AppColors.white100),
+//               ),
+//             )
+//           : null,
+//       actions: actions,
+//       title: Text(
+//         title ?? "",
+//         style: GoogleFonts.nunito(
+//           color: AppColors.white100,
+//           fontSize: (1 / 37).r,
+//           fontWeight: FontWeight.w500,
+//         ),
+//       ),
+//       bottom: bottom,
+//     );
+//   }
 
-  @override
-  Size get preferredSize => Size.fromHeight(50.h);
-}
+//   @override
+//   Size get preferredSize => Size.fromHeight(50.h);
+// }

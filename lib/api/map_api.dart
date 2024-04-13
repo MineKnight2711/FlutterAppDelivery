@@ -83,31 +83,23 @@ class MapApi {
     return responseBase;
   }
 
-  Future<String> getDistance(String address) async {
+  Future<double> getDistance(String destination, String origin) async {
     final url =
-        'https://rsapi.goong.io/geocode?address=$address&api_key=$goongApiKey';
-    print(url);
+        'https://rsapi.goong.io/DistanceMatrix?origins=$origin&destinations=$destination&vehicle=car&api_key=$goongApiKey';
 
     try {
       final response = await http.get(Uri.parse(url));
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
-        print(data);
-        final elements = data['results'][0];
-        final formattedAddress = elements['formatted_address'];
-        final geometry = elements['geometry'];
-        final location = geometry['location'];
-        final lat = location['lat'];
-        final lng = location['lng'];
-        print(elements);
-        return '$lat,$lng';
+        final rows = data['rows'] as List<dynamic>;
+        final elements = rows[0]['elements'] as List<dynamic>;
+        final distanceElement = elements[0]['distance'];
+        return distanceElement['value'].toDouble();
       } else {
-        // Handle non-200 response
         throw Exception(
-            'Failed to get location. Status code: ${response.statusCode}');
+            'Failed to get distance. Status code: ${response.statusCode}');
       }
     } catch (error) {
-      // Handle error
       print('Error: $error');
       rethrow;
     }

@@ -82,4 +82,34 @@ class MapApi {
     responseBase.message = 'Error';
     return responseBase;
   }
+
+  Future<String> getDistance(String address) async {
+    final url =
+        'https://rsapi.goong.io/geocode?address=$address&api_key=$goongApiKey';
+    print(url);
+
+    try {
+      final response = await http.get(Uri.parse(url));
+      if (response.statusCode == 200) {
+        final data = jsonDecode(response.body);
+        print(data);
+        final elements = data['results'][0];
+        final formattedAddress = elements['formatted_address'];
+        final geometry = elements['geometry'];
+        final location = geometry['location'];
+        final lat = location['lat'];
+        final lng = location['lng'];
+        print(elements);
+        return '$lat,$lng';
+      } else {
+        // Handle non-200 response
+        throw Exception(
+            'Failed to get location. Status code: ${response.statusCode}');
+      }
+    } catch (error) {
+      // Handle error
+      print('Error: $error');
+      rethrow;
+    }
+  }
 }
